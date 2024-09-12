@@ -17,6 +17,10 @@ O Sistema de Eleição é uma aplicação desenvolvida para gerenciar o processo
 - **Lombok**: Biblioteca para reduzir o boilerplate code.
 - **JUnit**: Framework para testes unitários.
 
+- **IntelliJ IDEA**: IDE utilizada para escrever, compilar e executar o código Java da aplicação.
+- **Insomnia**: Utilizado para testar e consumir as APIs REST, permitindo verificar o comportamento dos endpoints e validar as funcionalidades implementadas.
+
+
 ## Requisitos para Executar o Projeto
 
 1. **Java Development Kit (JDK) 17**: Certifique-se de ter o JDK 17 instalado.
@@ -78,6 +82,16 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
 - **Boletim de Urna**:
   - `GET /boletim-urna/{idSessao}` - Gera o boletim de urna para uma sessão encerrada.
+
+## DatabaseInitializer
+
+O `DatabaseInitializer` é uma classe de inicialização usada para popular automaticamente o banco de dados da aplicação com dados iniciais, como eleitores, candidatos e sessões de votação. Ao iniciar a aplicação, essa classe é executada automaticamente, criando registros fictícios para simular um cenário de eleição.
+
+1. **Criação de Eleitores e Candidatos**: Gera uma lista de eleitores e candidatos com dados fictícios, facilitando o desenvolvimento e testes sem a necessidade de inserir dados manualmente.
+
+2. **Abertura de Sessão e Registro de Votos**: Abre uma sessão de votação associada a um cargo específico e, durante o período em que a sessão está aberta, registra votos de maneira aleatória entre os candidatos existentes. Cada voto é distribuído aleatoriamente, simulando o comportamento de uma eleição real onde os eleitores escolhem seus candidatos preferidos.
+
+3. **Fechamento de Sessão e Geração do Boletim de Votação**: Após fechar a sessão, o `DatabaseInitializer` utiliza o `BoletimService` para gerar um boletim de votação detalhado, que inclui o número de votos para cada candidato, o total de votos e o vencedor da eleição, garantindo uma visão clara dos resultados.
 
 ## Como Executar o Projeto
 
